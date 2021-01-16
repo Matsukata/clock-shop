@@ -1,1 +1,1 @@
-Clock shop console application
+Clock controller console application
