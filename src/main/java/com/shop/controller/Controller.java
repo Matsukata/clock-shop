@@ -1,42 +1,43 @@
 package com.shop.controller;
 
-import com.shop.model.DBLayer;
+import com.shop.model.Model;
 import com.shop.model.Watches;
-import com.shop.view.WatchesOutput;
+import com.shop.util.Constants;
+import com.shop.view.InputHandler;
+import com.shop.view.View;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Controller {
-    Model modelLayer = new DBLayer();
-    View view = new WatchesOutput();
-    public void execute() throws IOException {
-        Watches watches = modelLayer.getWatches();
-        view.showWatches(watches);
+    private Model model;
+    private View view;
+
+    public Controller(Model model, View view) {
+        this.model = model;
+        this.view = view;
     }
-    //It seems more like a controller
-    public void showWatches(Watches watches, inputLine) {
-        System.out.println("Введите один из параметров для сортировки. Мужские/женские. Япония/Германия/Италия. ");
 
-            if (inputLine.isEmpty()) {
-                break;
-            } else {
+    public void run(ArrayList<Watches> watches, String inputLine) throws IOException {
+        inputLine = new InputHandler().inputString();
 
-                if (watches.getSex().equals(inputLine)) {
-                    printMessage(watches);
-                }
-                if (watches.getSex().equals(line)) {
-                    System.out.println(watches);
-                }
-                if (watches.getBrand().equals(line)) {
-                    System.out.println(watches);
-                }
-                if (watches.getCountryProducer().equals(line)) {
-                    System.out.println(watches);
-                }
-                if (watches.getStyle().equals(line)) {
-                    System.out.println(watches);
-                }
-                if (watches.getMaterialCorp().equals(line)) {
-                    System.out.println(watches);
+        if (!inputLine.isEmpty()) {
+            for (Watches watch : watches) {
+
+                if (watch.getSex().equals(inputLine)) {
+                    view.printMessage(watch.toString());
+                } else if (watch.getBrand().equals(inputLine)) {
+                    view.printMessage(watch.toString());
+                } else if (watch.getCountryOfOrigin().equals(inputLine)) {
+                    view.printMessage(watch.toString());
+                } else if (watch.getOccasion().equals(inputLine)) {
+                    view.printMessage(watch.toString());
+                } else if (watch.getGlassMaterial().equals(inputLine)) {
+                    view.printMessage(watch.toString());
+                } else {
+                    view.printMessage(Constants.NOTHING_WAS_FOUND);
                 }
             }
+        }
+    }
+}

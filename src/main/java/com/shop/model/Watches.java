@@ -80,7 +80,7 @@ public class Watches {
 
     @Override
     public String toString() {
-        return "Watches " + this.getBrand() + " for " + this.getSex() + " are produced in: " + this.getCountryOfOrigin()
+        return "Watches by " + this.getBrand() + " for " + this.getSex() + " are produced in: " + this.getCountryOfOrigin()
                 + ". The price is: " + this.getPrice() + ".";
     }
 }
