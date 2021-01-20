@@ -19,7 +19,7 @@ public class Controller {
     public void printSortedWatchList() {
         List<Watch> watches = model.getWatchList();
         for (Watch watch : watches) {
-            view.getMessagePrinter().printMessage(watch.toString());
+            view.messagePrinter().printMessage(watch.toString());
         }
     }
 

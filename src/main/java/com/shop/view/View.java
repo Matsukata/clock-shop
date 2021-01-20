@@ -16,6 +16,10 @@ public class View {
     }
 
     public MessagePrinter getMessagePrinter() {
+        return messagePrinter;
+    }
+
+    public MessagePrinter messagePrinter() {
         return new MessagePrinter();
     }
 
