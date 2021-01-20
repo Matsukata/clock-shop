@@ -1,13 +1,11 @@
 package com.shop.controller;
 
 import com.shop.model.Model;
-import com.shop.model.Watches;
-import com.shop.util.Constants;
-import com.shop.view.InputHandler;
+import com.shop.model.Watch;
 import com.shop.view.View;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
     private Model model;
@@ -18,11 +16,22 @@ public class Controller {
         this.view = view;
     }
 
-    public void run(ArrayList<Watches> watches, String inputLine) throws IOException {
+    public void printSortedWatchList() {
+        List<Watch> watches = model.getWatchList();
+        for (Watch watch : watches) {
+            view.getMessagePrinter().printMessage(watch.toString());
+        }
+    }
+
+    public void run() throws IOException {
+        view.printMenu();
+        view.menu();
+    }
+   /*
         inputLine = new InputHandler().inputString();
 
         if (!inputLine.isEmpty()) {
-            for (Watches watch : watches) {
+            for (Watch watch : watches) {
 
                 if (watch.getSex().equals(inputLine)) {
                     view.printMessage(watch.toString());
@@ -39,5 +48,5 @@ public class Controller {
                 }
             }
         }
-    }
+    }*/
 }
