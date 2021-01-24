@@ -9,6 +9,7 @@ public class Constants {
     public static final String MAIN_MENU =
             "Please, enter \"1\" to watch our collection\n" +
             "Please, enter \"2\" to choose menu for sorting\n" +
+            "Please, enter \"3\" to add new product\n" +
             "Please, enter \"0\" to exit";
     public static final String MENU_FOR_SORTING =
             "Please, enter \"color\" to sort collection by color\n" +
@@ -20,5 +21,8 @@ public class Constants {
             "Please, enter the color you look for";
     public static final String PRICE_MENU =
             "Please, enter the price you look for";
+    public static final String MENU_FOR_ADDING =
+            "Please, enter the brand, price, country of origin," +
+                    " color, occasion, material of glass, sex, date with whitespace";
 }
 

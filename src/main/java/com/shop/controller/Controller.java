@@ -36,8 +36,11 @@ public class Controller {
                     view.getMessagePrinter().printMessage(Constants.MAIN_MENU);
                     break;
                 case ("2"):
-                    subMenu();
+                    subMenuForSorting();
                     view.getMessagePrinter().printMessage(Constants.MAIN_MENU);
+                    break;
+                case ("3"):
+                    view.getMessagePrinter().printMessage(Constants.MENU_FOR_ADDING);
                     break;
                 case ("0"):
                     break;
@@ -45,7 +48,7 @@ public class Controller {
         }
     }
 
-    public void subMenu() throws IOException {
+    public void subMenuForSorting() throws IOException {
         view.getMessagePrinter().printMessage(Constants.MENU_FOR_SORTING);
         switch (view.getInputHandler().inputString()) {
             case ("color"):
@@ -72,6 +75,9 @@ public class Controller {
             default:
                 view.getMessagePrinter().printMessage(Constants.NOTHING_WAS_FOUND);
         }
+    }
+    public void subMenuForAddingNewProduct(){
+
     }
 
     public void run() throws IOException {
