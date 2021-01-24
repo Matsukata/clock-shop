@@ -1,16 +1,40 @@
 package com.shop.model;
 
-import com.shop.view.InputHandler;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.Comparator;
+public class CustomComparator {
 
-public class CustomComparator implements Comparator<Watch> {
+    public List<Watch> getFilteredWatchesByColor(String line, List<Watch> watches) {
+        List<Watch> watchesFilteredByColor = new ArrayList();
+        for (Watch watch : watches) {
+            if (watch.getColor().equals(line)) {
+                watchesFilteredByColor.add(watch);
+            }
+        }
+        return watchesFilteredByColor;
+    }
 
-    @Override
-    public int compare(Watch watch1, Watch watch2) {
-        int brandCompare = watch1.getBrand().compareTo(watch2.getBrand());
-        int sexCompare = watch1.getSex().compareTo(watch2.getBrand());
-        return 0;
+    public List<Watch> getFilteredWatchesByPrice(String line, List<Watch> watches) {
+        List<Watch> watchesFilteredByPrice = new ArrayList();
+        for (Watch watch : watches) {
+            if (watch.getPrice().equals(new BigDecimal(line))) {
+                watchesFilteredByPrice.add(watch);
+            }
+        }
+        return watchesFilteredByPrice;
+    }
+
+    public List<Watch> getFilteredWatchesByDate(String line, List<Watch> watches) {
+        List<Watch> watchesFilteredByDate = new ArrayList();
+        for (Watch watch : watches) {
+            if (watch.getDate().equals(LocalDate.parse(line))) {
+                watchesFilteredByDate.add(watch);
+            }
+        }
+        return watchesFilteredByDate;
     }
 }
 

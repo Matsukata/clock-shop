@@ -7,15 +7,17 @@ public class Watch {
     private String brand;
     private BigDecimal price;
     private String countryOfOrigin;
+    private String color;
     private String occasion;
     private String glassMaterial;
     private String sex;
     private LocalDate date;
 
-    public Watch(String brand, BigDecimal price, String countryOfOrigin, String occasion, String glassMaterial, String sex, LocalDate date) {
+    public Watch(String brand, BigDecimal price, String countryOfOrigin, String color, String occasion, String glassMaterial, String sex, LocalDate date) {
         this.brand = brand;
         this.price = price;
         this.countryOfOrigin = countryOfOrigin;
+        this.color = color;
         this.occasion = occasion;
         this.glassMaterial = glassMaterial;
         this.sex = sex;
@@ -44,6 +46,14 @@ public class Watch {
 
     public void setCountryOfOrigin(String countryOfOrigin) {
         this.countryOfOrigin = countryOfOrigin;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getOccasion() {
@@ -81,6 +91,6 @@ public class Watch {
     @Override
     public String toString() {
         return "Watch by " + this.getBrand() + " for " + this.getSex() + " is produced in " + this.getCountryOfOrigin()
-                + ". The price is " + this.getPrice() + ".";
+                + ". Its color is " + this.getColor() + ". The price is " + this.getPrice() + ".";
     }
 }
