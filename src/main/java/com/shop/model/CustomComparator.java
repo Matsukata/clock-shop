@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomComparator {
-
     public List<Watch> getFilteredWatchesByColor(String line, List<Watch> watches) {
         List<Watch> watchesFilteredByColor = new ArrayList();
         for (Watch watch : watches) {

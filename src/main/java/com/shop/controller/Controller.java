@@ -9,7 +9,6 @@ import com.shop.view.View;
 import java.io.IOException;
 import java.util.List;
 
-
 public class Controller {
     private Model model;
     private View view;

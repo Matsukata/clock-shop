@@ -17,7 +17,7 @@ public class Constants {
     public static final String DATE_FORMAT_MENU =
             "Please, enter date in format \"2020-08-12\" to sort by date";
     public static final String COLOR_MENU =
-            "Please, enter color you look for";
+            "Please, enter the color you look for";
     public static final String PRICE_MENU =
             "Please, enter the price you look for";
 }
