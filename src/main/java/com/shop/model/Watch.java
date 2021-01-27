@@ -4,16 +4,17 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Watch {
-    private String brand;
+    private Brand brand;
     private BigDecimal price;
-    private String countryOfOrigin;
-    private String color;
-    private String occasion;
-    private String glassMaterial;
-    private String sex;
+    private CountryOfOrigin countryOfOrigin;
+    private Color color;
+    private Occasion occasion;
+    private GlassMaterial glassMaterial;
+    private Sex sex;
     private LocalDate date;
 
-    public Watch(String brand, BigDecimal price, String countryOfOrigin, String color, String occasion, String glassMaterial, String sex, LocalDate date) {
+    public Watch(Brand brand, BigDecimal price, CountryOfOrigin countryOfOrigin, Color color,
+                 Occasion occasion, GlassMaterial glassMaterial, Sex sex, LocalDate date) {
         this.brand = brand;
         this.price = price;
         this.countryOfOrigin = countryOfOrigin;
@@ -24,11 +25,11 @@ public class Watch {
         this.date = date;
     }
 
-    public String getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
@@ -40,43 +41,43 @@ public class Watch {
         this.price = price;
     }
 
-    public String getCountryOfOrigin() {
+    public CountryOfOrigin getCountryOfOrigin() {
         return countryOfOrigin;
     }
 
-    public void setCountryOfOrigin(String countryOfOrigin) {
+    public void setCountryOfOrigin(CountryOfOrigin countryOfOrigin) {
         this.countryOfOrigin = countryOfOrigin;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
-    public String getOccasion() {
+    public Occasion getOccasion() {
         return occasion;
     }
 
-    public void setOccasion(String occasion) {
+    public void setOccasion(Occasion occasion) {
         this.occasion = occasion;
     }
 
-    public String getGlassMaterial() {
+    public GlassMaterial getGlassMaterial() {
         return glassMaterial;
     }
 
-    public void setGlassMaterial(String glassMaterial) {
+    public void setGlassMaterial(GlassMaterial glassMaterial) {
         this.glassMaterial = glassMaterial;
     }
 
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 

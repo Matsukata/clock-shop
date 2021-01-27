@@ -1,9 +1,9 @@
 package com.shop.model;
 
 public enum Occasion {
-    SPORTS("Sports"),
-    CASUAL("Casual"),
-    FORMAL("Formal");
+    SPORTS("sports"),
+    CASUAL("casual"),
+    FORMAL("formal");
 
     private String occasion;
 

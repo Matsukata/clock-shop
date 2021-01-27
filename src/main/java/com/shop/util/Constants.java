@@ -1,9 +1,9 @@
 package com.shop.util;
 
 public class Constants {
-    public static final String MEN = "men";
-    public static final String WOMAN = "women";
     public static final String NOTHING_WAS_FOUND = "Nothing was found.";
+    public static final String INPUT_DATA_IS_NOT_PARSABLE = "Input data is not parsable";
+    public static final String DO_YOU_WANT_ADD_MORE = "Do you want add more? Enter \"Yes\" or \"No\"";
     public static final String WELCOME = "Welcome to ClockShop\n" +
             "Menu";
     public static final String MAIN_MENU =
@@ -24,5 +24,9 @@ public class Constants {
     public static final String MENU_FOR_ADDING =
             "Please, enter the brand, price, country of origin," +
                     " color, occasion, material of glass, sex, date with whitespace";
+    public static final String ENTER_0_TO_EXIT = "Please, enter \"0\" to exit in main menu" +
+            " or choose another criteria for sorting ";
+    public static final String THE_OPERATION_WAS_SUCCESSFULLY_COMPLETED = "The operation was " +
+            "completed successfully";
 }
 

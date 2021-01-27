@@ -9,7 +9,7 @@ public class CustomComparator {
     public List<Watch> getFilteredWatchesByColor(String line, List<Watch> watches) {
         List<Watch> watchesFilteredByColor = new ArrayList();
         for (Watch watch : watches) {
-            if (watch.getColor().equals(line)) {
+            if (watch.getColor().toString().equals(line)) {
                 watchesFilteredByColor.add(watch);
             }
         }
