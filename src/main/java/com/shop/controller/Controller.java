@@ -46,14 +46,8 @@ public class Controller {
             }
             if (string.equals("3")) {
                 view.getMessagePrinter().printMessage(Constants.MENU_FOR_ADDING);
-                subMenuToAdd();
-                view.getMessagePrinter().printMessage(Constants.DO_YOU_WANT_ADD_MORE);
-                String line = view.getInputHandler().inputString();
-                if(line.equals("No")){
-                    view.getMessagePrinter().printMessage(Constants.MAIN_MENU);
-                } else {
-                    subMenuToAdd();
-                }
+                addWatchSubMenu();
+                view.getMessagePrinter().printMessage(Constants.MAIN_MENU);
             }
         }
     }
@@ -96,8 +90,8 @@ public class Controller {
         }
     }
 
-    public void subMenuToAdd() throws IOException {
-        while(true){
+    public void addWatchSubMenu() throws IOException {
+        while (true) {
             String line = view.getInputHandler().inputString();
             if (line.equals("0")) {
                 break;
@@ -130,5 +124,6 @@ public class Controller {
         menu();
     }
 }
+
 
 

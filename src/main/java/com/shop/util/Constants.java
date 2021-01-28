@@ -3,7 +3,8 @@ package com.shop.util;
 public class Constants {
     public static final String NOTHING_WAS_FOUND = "Nothing was found.";
     public static final String INPUT_DATA_IS_NOT_PARSABLE = "Input data is not parsable";
-    public static final String DO_YOU_WANT_ADD_MORE = "Do you want add more? Enter \"Yes\" or \"No\"";
+    public static final String DO_YOU_WANT_ADD_MORE = "Do you want add more? Enter \"0\"" +
+            " to exit or \"Yes\" to add new product";
     public static final String WELCOME = "Welcome to ClockShop\n" +
             "Menu";
     public static final String MAIN_MENU =
