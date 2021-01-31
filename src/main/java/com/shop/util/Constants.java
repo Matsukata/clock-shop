@@ -1,10 +1,13 @@
 package com.shop.util;
 
 public class Constants {
+    public static final String EMPTY_LINE = "\n";
     public static final String NOTHING_WAS_FOUND = "Nothing was found.";
     public static final String INPUT_DATA_IS_NOT_PARSABLE = "Input data is not parsable";
-    public static final String DO_YOU_WANT_ADD_MORE = "Do you want add more? Enter \"0\"" +
-            " to exit or \"Yes\" to add new product";
+    public static final String EXIT_COMMAND = "0";
+    public static final String PRINT_COLLECTION__COMMAND = "1";
+    public static final String SORT_COMMAND = "2";
+    public static final String ADD_COMMAND = "3";
     public static final String WELCOME = "Welcome to ClockShop\n" +
             "Menu";
     public static final String MAIN_MENU =
@@ -25,9 +28,10 @@ public class Constants {
     public static final String MENU_FOR_ADDING =
             "Please, enter the brand, price, country of origin," +
                     " color, occasion, material of glass, sex, date with whitespace";
-    public static final String ENTER_0_TO_EXIT = "Please, enter \"0\" to exit in main menu" +
+    public static final String ENTER_ZERO_TO_EXIT = "Please, enter \"0\" to exit in main menu" +
             " or choose another criteria for sorting ";
     public static final String THE_OPERATION_WAS_SUCCESSFULLY_COMPLETED = "The operation was " +
             "completed successfully";
 }
+
 

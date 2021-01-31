@@ -1,127 +1,132 @@
 package com.shop.controller;
 
-import com.shop.model.*;
+import com.shop.model.Brand;
+import com.shop.model.Color;
+import com.shop.model.CountryOfOrigin;
+import com.shop.model.GlassMaterial;
+import com.shop.model.Model;
+import com.shop.model.Occasion;
+import com.shop.model.Sex;
+import com.shop.model.Watch;
 import com.shop.util.Constants;
 import com.shop.view.View;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
+import static com.shop.util.Constants.EMPTY_LINE;
+import static com.shop.util.Constants.MAIN_MENU;
+
 public class Controller {
-    private Model model;
-    private View view;
+    private final Model model;
+    private final View view;
 
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
     }
 
-    public void printWatchList() {
-        List<Watch> watches = model.getWatchList();
-        for (Watch watch : watches) {
-            view.getMessagePrinter().printMessage(watch.toString());
-        }
+    public void run() throws IOException {
+        menu();
     }
 
-    public void menu() throws IOException {
-        view.getMessagePrinter().printMessage(Constants.WELCOME);
-        view.getMessagePrinter().printMessage(Constants.MAIN_MENU);
-
+    private void menu() throws IOException {
+        view.printMessage(Constants.WELCOME);
+        view.printMessage(MAIN_MENU);
         while (true) {
-            String string = view.getInputHandler().inputString();
-            if (string.equals("0")) {
+            String string = view.inputString();
+            if (string.equals(Constants.EXIT_COMMAND)) {
                 break;
             }
-            if (string.equals("1")) {
+            if (string.equals(Constants.PRINT_COLLECTION__COMMAND)) {
                 printWatchList();
-                System.out.println();
-                view.getMessagePrinter().printMessage(Constants.MAIN_MENU);
+                view.printMessage(EMPTY_LINE + MAIN_MENU);
             }
-            if (string.equals("2")) {
+            if (string.equals(Constants.SORT_COMMAND)) {
                 subMenuForSorting();
-                view.getMessagePrinter().printMessage(Constants.MAIN_MENU);
+                view.printMessage(MAIN_MENU);
             }
-            if (string.equals("3")) {
-                view.getMessagePrinter().printMessage(Constants.MENU_FOR_ADDING);
+            if (string.equals(Constants.ADD_COMMAND)) {
+                view.printMessage(Constants.MENU_FOR_ADDING);
                 addWatchSubMenu();
-                view.getMessagePrinter().printMessage(Constants.MAIN_MENU);
+                view.printMessage(MAIN_MENU);
             }
         }
     }
 
-    public void subMenuForSorting() throws IOException {
+    private void printWatchList() {
+        List<Watch> watches = model.getWatchList();
+        for (Watch watch : watches) {
+            view.printMessage(watch.toString());
+        }
+    }
 
+    private void subMenuForSorting() throws IOException {
         while (true) {
-            view.getMessagePrinter().printMessage(Constants.MENU_FOR_SORTING);
-            String line = view.getInputHandler().inputString();
-            if (line.equals("0")) {
+            view.printMessage(Constants.MENU_FOR_SORTING);
+            String line = view.inputString();
+            if (line.equals(Constants.EXIT_COMMAND)) {
                 break;
             } else {
                 switch (line) {
                     case ("color"):
-                        view.getMessagePrinter().printMessage(Constants.COLOR_MENU);
-                        List<Watch> watchesByColor = new CustomComparator().getFilteredWatchesByColor(view.getInputHandler().inputString(), model.getWatchList());
-                        watchesByColor.stream();
-                        watchesByColor.forEach(watch -> view.getMessagePrinter().printMessage(watch.toString()));
-                        System.out.println();
+                        view.printMessage(Constants.COLOR_MENU);
+                        String inputLineForColor = view.inputString();
+                        List<Watch> watchesByColor = model.getFilteredWatchesByColor(inputLineForColor, model.getWatchList());
+                        watchesByColor.forEach(watch -> view.printMessage(watch.toString()));
                         break;
                     case ("price"):
-                        view.getMessagePrinter().printMessage(Constants.PRICE_MENU);
-                        List<Watch> watchesByPrice = new CustomComparator().getFilteredWatchesByPrice(view.getInputHandler().inputString(), model.getWatchList());
-                        watchesByPrice.stream();
-                        watchesByPrice.forEach(watch -> view.getMessagePrinter().printMessage(watch.toString()));
-                        System.out.println();
+                        view.printMessage(Constants.PRICE_MENU);
+                        String inputLineForPrice = view.inputString();
+                        List<Watch> watchesByPrice = model.getFilteredWatchesByPrice(inputLineForPrice, model.getWatchList());
+                        watchesByPrice.forEach(watch -> view.printMessage(watch.toString()));
                         break;
                     case ("date"):
-                        view.getMessagePrinter().printMessage(Constants.DATE_FORMAT_MENU);
-                        List<Watch> watchesSortedByDate = new CustomComparator().getFilteredWatchesByDate(view.getInputHandler().inputString(), model.getWatchList());
-                        watchesSortedByDate.stream();
-                        watchesSortedByDate.forEach(watch -> view.getMessagePrinter().printMessage(watch.toString()));
-                        System.out.println();
+                        view.printMessage(Constants.DATE_FORMAT_MENU);
+                        String inputLineForDate = view.inputString();
+                        List<Watch> watchesSortedByDate = model.getFilteredWatchesByDate(inputLineForDate, model.getWatchList());
+                        watchesSortedByDate.forEach(watch -> view.printMessage(watch.toString()));
                         break;
                     default:
-                        view.getMessagePrinter().printMessage(Constants.NOTHING_WAS_FOUND);
+                        view.printMessage(Constants.NOTHING_WAS_FOUND);
                 }
             }
-            view.getMessagePrinter().printMessage(Constants.ENTER_0_TO_EXIT);
+            view.printMessage(EMPTY_LINE + Constants.ENTER_ZERO_TO_EXIT);
         }
     }
 
-    public void addWatchSubMenu() throws IOException {
+    private void addWatchSubMenu() throws IOException {
         while (true) {
-            String line = view.getInputHandler().inputString();
-            if (line.equals("0")) {
+            String line = view.inputString();
+            if (line.equals(Constants.EXIT_COMMAND)) {
                 break;
             } else {
                 Watch watch = parseWatchFromString(line);
                 if (watch == null) {
-                    view.getMessagePrinter().printMessage(Constants.INPUT_DATA_IS_NOT_PARSABLE);
+                    view.printMessage(Constants.INPUT_DATA_IS_NOT_PARSABLE);
                 } else {
                     model.addWatch(watch);
-                    view.getMessagePrinter().printMessage(Constants.THE_OPERATION_WAS_SUCCESSFULLY_COMPLETED);
+                    view.printMessage(Constants.THE_OPERATION_WAS_SUCCESSFULLY_COMPLETED);
                 }
             }
             break;
         }
     }
 
-    public Watch parseWatchFromString(String line) {
-        List<String> watchList = new ArrayList<>();
-        for (String subLine : line.split(" ")) {
-            watchList.add(subLine);
-        }
-        Watch watch = new Watch(Brand.valueOf(watchList.get(0).toUpperCase()), new BigDecimal(watchList.get(1)),
-                CountryOfOrigin.valueOf(watchList.get(2).toUpperCase()), Color.valueOf(watchList.get(3).toUpperCase()),
-                Occasion.valueOf(watchList.get(4).toUpperCase()), GlassMaterial.valueOf(watchList.get(5).toUpperCase()),
-                Sex.valueOf(watchList.get(6).toUpperCase()), LocalDate.parse(watchList.get(7)));
+    private Watch parseWatchFromString(String line) {
+        String[] attributes = line.split(" ");
+        Watch watch = new Watch(Brand.valueOf(attributes[0].toUpperCase()),
+                attributes[1],
+                new BigDecimal(attributes[1]),
+                CountryOfOrigin.valueOf(attributes[2].toUpperCase()),
+                Color.valueOf(attributes[3].toUpperCase()),
+                Occasion.valueOf(attributes[4].toUpperCase()),
+                GlassMaterial.valueOf(attributes[5].toUpperCase()),
+                Sex.valueOf(attributes[6].toUpperCase()),
+                LocalDate.parse(attributes[7]));
         return watch;
-    }
-
-    public void run() throws IOException {
-        menu();
     }
 }
 

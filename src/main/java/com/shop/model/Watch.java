@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class Watch {
     private Brand brand;
+    private String modelName;
     private BigDecimal price;
     private CountryOfOrigin countryOfOrigin;
     private Color color;
@@ -13,9 +14,10 @@ public class Watch {
     private Sex sex;
     private LocalDate date;
 
-    public Watch(Brand brand, BigDecimal price, CountryOfOrigin countryOfOrigin, Color color,
+    public Watch(Brand brand, String modelName, BigDecimal price, CountryOfOrigin countryOfOrigin, Color color,
                  Occasion occasion, GlassMaterial glassMaterial, Sex sex, LocalDate date) {
         this.brand = brand;
+        this.modelName = modelName;
         this.price = price;
         this.countryOfOrigin = countryOfOrigin;
         this.color = color;
@@ -31,6 +33,14 @@ public class Watch {
 
     public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
     }
 
     public BigDecimal getPrice() {
@@ -91,7 +101,7 @@ public class Watch {
 
     @Override
     public String toString() {
-        return "Watch by " + this.getBrand() + " for " + this.getSex() + " is produced in " + this.getCountryOfOrigin()
+        return "Watch by " + this.getBrand() + " model: " + this.getModelName() + " for " + this.getSex() + " is produced in " + this.getCountryOfOrigin()
                 + ". Its color is " + this.getColor() + ". The price is " + this.getPrice() + ".";
     }
 }
