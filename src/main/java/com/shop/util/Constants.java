@@ -5,7 +5,7 @@ public class Constants {
     public static final String NOTHING_WAS_FOUND = "Nothing was found.";
     public static final String INPUT_DATA_IS_NOT_PARSABLE = "Input data is not parsable";
     public static final String EXIT_COMMAND = "0";
-    public static final String PRINT_COLLECTION__COMMAND = "1";
+    public static final String COLLECTION_COMMAND = "1";
     public static final String SORT_COMMAND = "2";
     public static final String ADD_COMMAND = "3";
     public static final String WELCOME = "Welcome to ClockShop\n" +

@@ -16,8 +16,22 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.shop.util.Constants.ADD_COMMAND;
+import static com.shop.util.Constants.COLLECTION_COMMAND;
+import static com.shop.util.Constants.COLOR_MENU;
+import static com.shop.util.Constants.DATE_FORMAT_MENU;
 import static com.shop.util.Constants.EMPTY_LINE;
+import static com.shop.util.Constants.ENTER_ZERO_TO_EXIT;
+import static com.shop.util.Constants.EXIT_COMMAND;
+import static com.shop.util.Constants.INPUT_DATA_IS_NOT_PARSABLE;
 import static com.shop.util.Constants.MAIN_MENU;
+import static com.shop.util.Constants.MENU_FOR_ADDING;
+import static com.shop.util.Constants.MENU_FOR_SORTING;
+import static com.shop.util.Constants.NOTHING_WAS_FOUND;
+import static com.shop.util.Constants.PRICE_MENU;
+import static com.shop.util.Constants.SORT_COMMAND;
+import static com.shop.util.Constants.THE_OPERATION_WAS_SUCCESSFULLY_COMPLETED;
+import static com.shop.util.Constants.WELCOME;
 
 public class Controller {
     private final Model model;
@@ -29,86 +43,92 @@ public class Controller {
     }
 
     public void run() throws IOException {
-        menu();
+        showMenu();
     }
 
-    private void menu() throws IOException {
-        view.printMessage(Constants.WELCOME);
+    private void showMenu() throws IOException {
+        view.printMessage(WELCOME);
         view.printMessage(MAIN_MENU);
         while (true) {
             String string = view.inputString();
-            if (string.equals(Constants.EXIT_COMMAND)) {
+            if (string.equals(EXIT_COMMAND)) {
                 break;
             }
-            if (string.equals(Constants.PRINT_COLLECTION__COMMAND)) {
+            if (string.equals(COLLECTION_COMMAND)) {
                 printWatchList();
                 view.printMessage(EMPTY_LINE + MAIN_MENU);
             }
-            if (string.equals(Constants.SORT_COMMAND)) {
-                subMenuForSorting();
+            if (string.equals(SORT_COMMAND)) {
+                showSubMenuForSorting();
                 view.printMessage(MAIN_MENU);
             }
-            if (string.equals(Constants.ADD_COMMAND)) {
-                view.printMessage(Constants.MENU_FOR_ADDING);
-                addWatchSubMenu();
+            if (string.equals(ADD_COMMAND)) {
+                view.printMessage(MENU_FOR_ADDING);
+                showAddWatchSubMenu();
                 view.printMessage(MAIN_MENU);
             }
         }
     }
 
+    private void showSubMenuForSorting() throws IOException {
+        while (true) {
+            view.printMessage(MENU_FOR_SORTING);
+            String line = view.inputString();
+            if (line.equals(EXIT_COMMAND)) {
+                break;
+            } else {
+                switch (line) {
+                    case ("color"):
+                        view.printMessage(COLOR_MENU);
+                        String inputLineForColor = view.inputString();
+                        List<Watch> watchesByColor = model.getFilteredWatchesByColor
+                                (inputLineForColor, model.getWatchList());
+                        printWatchList(watchesByColor);
+                        break;
+                    case ("price"):
+                        view.printMessage(PRICE_MENU);
+                        String inputLineForPrice = view.inputString();
+                        List<Watch> watchesByPrice = model.getFilteredWatchesByPrice
+                                (inputLineForPrice, model.getWatchList());
+                        printWatchList(watchesByPrice);
+                        break;
+                    case ("date"):
+                        view.printMessage(DATE_FORMAT_MENU);
+                        String inputLineForDate = view.inputString();
+                        List<Watch> watchesSortedByDate = model.getFilteredWatchesByDate
+                                (inputLineForDate, model.getWatchList());
+                        printWatchList(watchesSortedByDate);
+                        break;
+                    default:
+                        view.printMessage(NOTHING_WAS_FOUND);
+                }
+            }
+            view.printMessage(EMPTY_LINE + ENTER_ZERO_TO_EXIT);
+        }
+    }
+
     private void printWatchList() {
-        List<Watch> watches = model.getWatchList();
+        printWatchList(model.getWatchList());
+    }
+
+    private void printWatchList(List<Watch> watches) {
         for (Watch watch : watches) {
             view.printMessage(watch.toString());
         }
     }
 
-    private void subMenuForSorting() throws IOException {
-        while (true) {
-            view.printMessage(Constants.MENU_FOR_SORTING);
-            String line = view.inputString();
-            if (line.equals(Constants.EXIT_COMMAND)) {
-                break;
-            } else {
-                switch (line) {
-                    case ("color"):
-                        view.printMessage(Constants.COLOR_MENU);
-                        String inputLineForColor = view.inputString();
-                        List<Watch> watchesByColor = model.getFilteredWatchesByColor(inputLineForColor, model.getWatchList());
-                        watchesByColor.forEach(watch -> view.printMessage(watch.toString()));
-                        break;
-                    case ("price"):
-                        view.printMessage(Constants.PRICE_MENU);
-                        String inputLineForPrice = view.inputString();
-                        List<Watch> watchesByPrice = model.getFilteredWatchesByPrice(inputLineForPrice, model.getWatchList());
-                        watchesByPrice.forEach(watch -> view.printMessage(watch.toString()));
-                        break;
-                    case ("date"):
-                        view.printMessage(Constants.DATE_FORMAT_MENU);
-                        String inputLineForDate = view.inputString();
-                        List<Watch> watchesSortedByDate = model.getFilteredWatchesByDate(inputLineForDate, model.getWatchList());
-                        watchesSortedByDate.forEach(watch -> view.printMessage(watch.toString()));
-                        break;
-                    default:
-                        view.printMessage(Constants.NOTHING_WAS_FOUND);
-                }
-            }
-            view.printMessage(EMPTY_LINE + Constants.ENTER_ZERO_TO_EXIT);
-        }
-    }
-
-    private void addWatchSubMenu() throws IOException {
+    private void showAddWatchSubMenu() throws IOException {
         while (true) {
             String line = view.inputString();
-            if (line.equals(Constants.EXIT_COMMAND)) {
+            if (line.equals(EXIT_COMMAND)) {
                 break;
             } else {
                 Watch watch = parseWatchFromString(line);
                 if (watch == null) {
-                    view.printMessage(Constants.INPUT_DATA_IS_NOT_PARSABLE);
+                    view.printMessage(INPUT_DATA_IS_NOT_PARSABLE);
                 } else {
                     model.addWatch(watch);
-                    view.printMessage(Constants.THE_OPERATION_WAS_SUCCESSFULLY_COMPLETED);
+                    view.printMessage(THE_OPERATION_WAS_SUCCESSFULLY_COMPLETED);
                 }
             }
             break;
@@ -129,6 +149,10 @@ public class Controller {
         return watch;
     }
 }
+
+
+
+
 
 
 
