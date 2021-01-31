@@ -18,7 +18,7 @@ public class Model {
     }
 
     public List<Watch> getFilteredWatchesByColor(String line, List<Watch> watches) {
-        List<Watch> watchesFilteredByColor = new ArrayList();
+        List<Watch> watchesFilteredByColor = new ArrayList<>();
         for (Watch watch : watches) {
             if (watch.getColor().toString().equals(line)) {
                 watchesFilteredByColor.add(watch);
@@ -28,7 +28,7 @@ public class Model {
     }
 
     public List<Watch> getFilteredWatchesByPrice(String line, List<Watch> watches) {
-        List<Watch> watchesFilteredByPrice = new ArrayList();
+        List<Watch> watchesFilteredByPrice = new ArrayList<>();
         for (Watch watch : watches) {
             if (watch.getPrice().equals(new BigDecimal(line))) {
                 watchesFilteredByPrice.add(watch);
@@ -38,7 +38,7 @@ public class Model {
     }
 
     public List<Watch> getFilteredWatchesByDate(String line, List<Watch> watches) {
-        List<Watch> watchesFilteredByDate = new ArrayList();
+        List<Watch> watchesFilteredByDate = new ArrayList<>();
         for (Watch watch : watches) {
             if (watch.getDate().equals(LocalDate.parse(line))) {
                 watchesFilteredByDate.add(watch);
