@@ -8,7 +8,6 @@ import com.shop.model.Model;
 import com.shop.model.Occasion;
 import com.shop.model.Sex;
 import com.shop.model.Watch;
-import com.shop.util.Constants;
 import com.shop.view.View;
 
 import java.io.IOException;
@@ -16,7 +15,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.shop.util.Constants.ADD_ANOTHER_OBJECT;
 import static com.shop.util.Constants.ADD_COMMAND;
+import static com.shop.util.Constants.CHOOSE_ANOTHER_CRITERIA;
 import static com.shop.util.Constants.COLLECTION_COMMAND;
 import static com.shop.util.Constants.COLOR_MENU;
 import static com.shop.util.Constants.DATE_FORMAT_MENU;
@@ -28,9 +29,12 @@ import static com.shop.util.Constants.MAIN_MENU;
 import static com.shop.util.Constants.MENU_FOR_ADDING;
 import static com.shop.util.Constants.MENU_FOR_SORTING;
 import static com.shop.util.Constants.NOTHING_WAS_FOUND;
+import static com.shop.util.Constants.OPERATION_SUCCESSFULLY_COMPLETED;
 import static com.shop.util.Constants.PRICE_MENU;
+import static com.shop.util.Constants.SHOW_TOTAL_SUM;
 import static com.shop.util.Constants.SORT_COMMAND;
-import static com.shop.util.Constants.THE_OPERATION_WAS_SUCCESSFULLY_COMPLETED;
+import static com.shop.util.Constants.TOTAL_SUM_COMMAND;
+import static com.shop.util.Constants.USD;
 import static com.shop.util.Constants.WELCOME;
 
 public class Controller {
@@ -51,20 +55,25 @@ public class Controller {
         view.printMessage(MAIN_MENU);
         while (true) {
             String string = view.inputString();
-            if (string.equals(EXIT_COMMAND)) {
+            if (string.equalsIgnoreCase(EXIT_COMMAND)) {
                 break;
             }
-            if (string.equals(COLLECTION_COMMAND)) {
+            if (string.equalsIgnoreCase(COLLECTION_COMMAND)) {
                 printWatchList();
                 view.printMessage(EMPTY_LINE + MAIN_MENU);
             }
-            if (string.equals(SORT_COMMAND)) {
+            if (string.equalsIgnoreCase(SORT_COMMAND)) {
                 showSubMenuForSorting();
                 view.printMessage(MAIN_MENU);
             }
-            if (string.equals(ADD_COMMAND)) {
+            if (string.equalsIgnoreCase(ADD_COMMAND)) {
                 view.printMessage(MENU_FOR_ADDING);
                 showAddWatchSubMenu();
+                view.printMessage(MAIN_MENU);
+            }
+            if (string.equalsIgnoreCase(TOTAL_SUM_COMMAND)) {
+                String totalSum = showTotalSum(model.getWatchList());
+                view.printMessage(SHOW_TOTAL_SUM + totalSum + USD);
                 view.printMessage(MAIN_MENU);
             }
         }
@@ -74,7 +83,7 @@ public class Controller {
         while (true) {
             view.printMessage(MENU_FOR_SORTING);
             String line = view.inputString();
-            if (line.equals(EXIT_COMMAND)) {
+            if (line.equalsIgnoreCase(EXIT_COMMAND)) {
                 break;
             } else {
                 switch (line) {
@@ -103,7 +112,7 @@ public class Controller {
                         view.printMessage(NOTHING_WAS_FOUND);
                 }
             }
-            view.printMessage(EMPTY_LINE + ENTER_ZERO_TO_EXIT);
+            view.printMessage(EMPTY_LINE + ENTER_ZERO_TO_EXIT + CHOOSE_ANOTHER_CRITERIA);
         }
     }
 
@@ -118,20 +127,16 @@ public class Controller {
     }
 
     private void showAddWatchSubMenu() throws IOException {
-        while (true) {
-            String line = view.inputString();
-            if (line.equals(EXIT_COMMAND)) {
-                break;
+        String line;
+        while (!(line = view.inputString()).equalsIgnoreCase(EXIT_COMMAND)) {
+            Watch watch = parseWatchFromString(line);
+            if (watch == null) {
+                view.printMessage(INPUT_DATA_IS_NOT_PARSABLE);
             } else {
-                Watch watch = parseWatchFromString(line);
-                if (watch == null) {
-                    view.printMessage(INPUT_DATA_IS_NOT_PARSABLE);
-                } else {
-                    model.addWatch(watch);
-                    view.printMessage(THE_OPERATION_WAS_SUCCESSFULLY_COMPLETED);
-                }
+                model.addWatch(watch);
+                view.printMessage(OPERATION_SUCCESSFULLY_COMPLETED);
+                view.printMessage(ENTER_ZERO_TO_EXIT + ADD_ANOTHER_OBJECT);
             }
-            break;
         }
     }
 
@@ -139,16 +144,25 @@ public class Controller {
         String[] attributes = line.split(" ");
         Watch watch = new Watch(Brand.valueOf(attributes[0].toUpperCase()),
                 attributes[1],
-                new BigDecimal(attributes[1]),
-                CountryOfOrigin.valueOf(attributes[2].toUpperCase()),
-                Color.valueOf(attributes[3].toUpperCase()),
-                Occasion.valueOf(attributes[4].toUpperCase()),
-                GlassMaterial.valueOf(attributes[5].toUpperCase()),
-                Sex.valueOf(attributes[6].toUpperCase()),
-                LocalDate.parse(attributes[7]));
+                new BigDecimal(attributes[2]),
+                CountryOfOrigin.valueOf(attributes[3].toUpperCase()),
+                Color.valueOf(attributes[4].toUpperCase()),
+                Occasion.valueOf(attributes[5].toUpperCase()),
+                GlassMaterial.valueOf(attributes[6].toUpperCase()),
+                Sex.valueOf(attributes[7].toUpperCase()),
+                LocalDate.parse(attributes[8]));
         return watch;
     }
+
+    private String showTotalSum(List<Watch> watches) {
+        BigDecimal totalSum = new BigDecimal(0.00);
+        for (Watch watch : watches) {
+            totalSum = totalSum.add(watch.getPrice());
+        }
+        return totalSum.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+    }
 }
+
 
 
 

@@ -9,15 +9,15 @@ public class DBProvider {
     private List<Watch> dataBaseWatches = new ArrayList<>();
 
     public List<Watch> getData() {
-        dataBaseWatches.add(new Watch(Brand.CASIO, "JTB -356", new BigDecimal("24000.00"), CountryOfOrigin.JAPAN,
+        dataBaseWatches.add(new Watch(Brand.CASIO, "JTB -356", new BigDecimal("20000.00"), CountryOfOrigin.JAPAN,
                 Color.BLACK, Occasion.SPORTS, GlassMaterial.MINERAL, Sex.MEN, LocalDate.of(2020, 8, 12)));
-        dataBaseWatches.add(new Watch(Brand.ORIENT, "TY-234", new BigDecimal("22000.00"), CountryOfOrigin.JAPAN,
+        dataBaseWatches.add(new Watch(Brand.ORIENT, "TY-234", new BigDecimal("20000.00"), CountryOfOrigin.JAPAN,
                 Color.GOLD, Occasion.FORMAL, GlassMaterial.SAPPHIRE, Sex.WOMEN, LocalDate.of(2020, 8, 12)));
-        dataBaseWatches.add(new Watch(Brand.BOCCIA, "RGH - 415", new BigDecimal("13000.00"), CountryOfOrigin.GERMANY,
+        dataBaseWatches.add(new Watch(Brand.BOCCIA, "RGH - 415", new BigDecimal("10000.00"), CountryOfOrigin.GERMANY,
                 Color.BLACK, Occasion.FORMAL, GlassMaterial.MINERAL, Sex.MEN, LocalDate.of(2020, 8, 12)));
-        dataBaseWatches.add(new Watch(Brand.DIESEL, "SDK - 245", new BigDecimal("26000"), CountryOfOrigin.ITALY,
+        dataBaseWatches.add(new Watch(Brand.DIESEL, "SDK - 245", new BigDecimal("30000"), CountryOfOrigin.ITALY,
                 Color.RED, Occasion.CASUAL, GlassMaterial.MINERAL, Sex.MEN, LocalDate.of(2020, 8, 12)));
-        dataBaseWatches.add(new Watch(Brand.CASIO, "RTG - 563", new BigDecimal("45000"), CountryOfOrigin.JAPAN,
+        dataBaseWatches.add(new Watch(Brand.CASIO, "RTG - 563", new BigDecimal("40000"), CountryOfOrigin.JAPAN,
                 Color.BLACK, Occasion.SPORTS, GlassMaterial.MINERAL, Sex.MEN, LocalDate.of(2020, 8, 12)));
         return dataBaseWatches;
     }
