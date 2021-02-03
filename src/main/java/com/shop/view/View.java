@@ -14,4 +14,3 @@ public class View {
         messagePrinter.printMessage(message);
     }
 }
-

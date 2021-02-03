@@ -34,7 +34,6 @@ import static com.shop.util.Constants.PRICE_MENU;
 import static com.shop.util.Constants.SHOW_TOTAL_SUM;
 import static com.shop.util.Constants.SORT_COMMAND;
 import static com.shop.util.Constants.TOTAL_SUM_COMMAND;
-import static com.shop.util.Constants.USD;
 import static com.shop.util.Constants.WELCOME;
 
 public class Controller {
@@ -72,8 +71,8 @@ public class Controller {
                 view.printMessage(MAIN_MENU);
             }
             if (string.equalsIgnoreCase(TOTAL_SUM_COMMAND)) {
-                String totalSum = showTotalSum(model.getWatchList());
-                view.printMessage(SHOW_TOTAL_SUM + totalSum + USD);
+                BigDecimal totalSum = getTotalSum(model.getWatchList());
+                view.printMessage(String.format(SHOW_TOTAL_SUM, totalSum.toString()));
                 view.printMessage(MAIN_MENU);
             }
         }
@@ -90,22 +89,19 @@ public class Controller {
                     case ("color"):
                         view.printMessage(COLOR_MENU);
                         String inputLineForColor = view.inputString();
-                        List<Watch> watchesByColor = model.getFilteredWatchesByColor
-                                (inputLineForColor, model.getWatchList());
+                        List<Watch> watchesByColor = model.getFilteredWatchesByColor(inputLineForColor, model.getWatchList());
                         printWatchList(watchesByColor);
                         break;
                     case ("price"):
                         view.printMessage(PRICE_MENU);
                         String inputLineForPrice = view.inputString();
-                        List<Watch> watchesByPrice = model.getFilteredWatchesByPrice
-                                (inputLineForPrice, model.getWatchList());
+                        List<Watch> watchesByPrice = model.getFilteredWatchesByPrice(inputLineForPrice, model.getWatchList());
                         printWatchList(watchesByPrice);
                         break;
                     case ("date"):
                         view.printMessage(DATE_FORMAT_MENU);
                         String inputLineForDate = view.inputString();
-                        List<Watch> watchesSortedByDate = model.getFilteredWatchesByDate
-                                (inputLineForDate, model.getWatchList());
+                        List<Watch> watchesSortedByDate = model.getFilteredWatchesByDate(inputLineForDate, model.getWatchList());
                         printWatchList(watchesSortedByDate);
                         break;
                     default:
@@ -142,7 +138,7 @@ public class Controller {
 
     private Watch parseWatchFromString(String line) {
         String[] attributes = line.split(" ");
-        Watch watch = new Watch(Brand.valueOf(attributes[0].toUpperCase()),
+        return new Watch(Brand.valueOf(attributes[0].toUpperCase()),
                 attributes[1],
                 new BigDecimal(attributes[2]),
                 CountryOfOrigin.valueOf(attributes[3].toUpperCase()),
@@ -151,22 +147,13 @@ public class Controller {
                 GlassMaterial.valueOf(attributes[6].toUpperCase()),
                 Sex.valueOf(attributes[7].toUpperCase()),
                 LocalDate.parse(attributes[8]));
-        return watch;
     }
 
-    private String showTotalSum(List<Watch> watches) {
+    private BigDecimal getTotalSum(List<Watch> watches) {
         BigDecimal totalSum = new BigDecimal(0.00);
         for (Watch watch : watches) {
             totalSum = totalSum.add(watch.getPrice());
         }
-        return totalSum.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+        return totalSum.setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 }
-
-
-
-
-
-
-
-

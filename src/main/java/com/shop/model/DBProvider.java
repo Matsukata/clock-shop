@@ -22,7 +22,3 @@ public class DBProvider {
         return dataBaseWatches;
     }
 }
-
-
-
-

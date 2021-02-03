@@ -34,11 +34,6 @@ public class Constants {
     public static final String ENTER_ZERO_TO_EXIT = "Please, enter \"0\" to exit in main menu";
     public static final String CHOOSE_ANOTHER_CRITERIA = " or choose another criteria for sorting";
     public static final String ADD_ANOTHER_OBJECT = " or add new object";
-    public static final String OPERATION_SUCCESSFULLY_COMPLETED = "The operation was " +
-            "completed successfully";
-
-    public static final String SHOW_TOTAL_SUM = "Currently our collection of watches is estimated for total sum: ";
-    public static final String USD = " USD";
+    public static final String OPERATION_SUCCESSFULLY_COMPLETED = "The operation was completed successfully";
+    public static final String SHOW_TOTAL_SUM = "Currently our collection of watches is estimated for total sum: %s USD";
 }
-
-
