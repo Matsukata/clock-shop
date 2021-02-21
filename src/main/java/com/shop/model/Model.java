@@ -44,31 +44,31 @@ public class Model {
     }
 
     public List<Watch> getSortedByColor() {
-        return sortWatches(Comparators.byColorComparator);
+        return sortWatches(Comparators.BY_COLOR_COMPARATOR);
     }
 
     public List<Watch> getSortedByDate() {
-        return sortWatches(Comparators.byDateComparator);
+        return sortWatches(Comparators.BY_DATE_COMPARATOR);
     }
 
     public List<Watch> getSortedByGlassMaterial() {
-        return sortWatches(Comparators.byGlassMaterialComparator);
+        return sortWatches(Comparators.BY_GLASS_MATERIAL_COMPARATOR);
     }
 
     public List<Watch> getSortedByOccasion() {
-        return sortWatches(Comparators.byOccasionComparator);
+        return sortWatches(Comparators.BY_OCCASION_COMPARATOR);
     }
 
     public List<Watch> getSortedByOriginCountry() {
-        return sortWatches(Comparators.byOriginCountryComparator);
+        return sortWatches(Comparators.BY_ORIGIN_COUNTRY_COMPARATOR);
     }
 
     public List<Watch> getSortedByPrice() {
-        return sortWatches(Comparators.byPriceComparator);
+        return sortWatches(Comparators.BY_PRICE_COMPARATOR);
     }
 
     public List<Watch> getSortedBySex() {
-        return sortWatches(Comparators.bySexComparator);
+        return sortWatches(Comparators.BY_SEX_COMPARATOR);
     }
 
     private List<Watch> sortWatches(Comparator<Watch> comparator) {
