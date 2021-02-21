@@ -7,19 +7,19 @@ public class Watch {
     private Brand brand;
     private String modelName;
     private BigDecimal price;
-    private CountryOfOrigin countryOfOrigin;
+    private OriginCountry originCountry;
     private Color color;
     private Occasion occasion;
     private GlassMaterial glassMaterial;
     private Sex sex;
     private LocalDate date;
 
-    public Watch(Brand brand, String modelName, BigDecimal price, CountryOfOrigin countryOfOrigin, Color color,
+    public Watch(Brand brand, String modelName, BigDecimal price, OriginCountry originCountry, Color color,
                  Occasion occasion, GlassMaterial glassMaterial, Sex sex, LocalDate date) {
         this.brand = brand;
         this.modelName = modelName;
         this.price = price;
-        this.countryOfOrigin = countryOfOrigin;
+        this.originCountry = originCountry;
         this.color = color;
         this.occasion = occasion;
         this.glassMaterial = glassMaterial;
@@ -51,12 +51,12 @@ public class Watch {
         this.price = price;
     }
 
-    public CountryOfOrigin getCountryOfOrigin() {
-        return countryOfOrigin;
+    public OriginCountry getOriginCountry() {
+        return originCountry;
     }
 
-    public void setCountryOfOrigin(CountryOfOrigin countryOfOrigin) {
-        this.countryOfOrigin = countryOfOrigin;
+    public void setOriginCountry(OriginCountry originCountry) {
+        this.originCountry = originCountry;
     }
 
     public Color getColor() {
@@ -101,7 +101,7 @@ public class Watch {
 
     @Override
     public String toString() {
-        return "Watch by " + this.getBrand() + " model: " + this.getModelName() + " for " + this.getSex() + " is produced in " + this.getCountryOfOrigin()
+        return "Watch by " + this.getBrand() + " model: " + this.getModelName() + " for " + this.getSex() + " is produced in " + this.getOriginCountry()
                 + ". Its color is " + this.getColor() + ". The price is " + this.getPrice() + ".";
     }
 }

@@ -2,6 +2,7 @@ package com.shop.model;
 
 public enum GlassMaterial {
     MINERAL("mineral"),
+    ACRYLIC("acrylic"),
     SAPPHIRE("sapphire");
 
     private String glassMaterial;
