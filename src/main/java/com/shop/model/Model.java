@@ -22,18 +22,20 @@ public class Model {
     }
 
     public List<Watch> getFilteredWatchesByColor(Color color, List<Watch> watches) {
-        return watches.stream().filter(a -> a.getColor().equals(color)).collect(Collectors.toList());
+        return watches.stream()
+                .filter(watch -> watch.getColor().equals(color))
+                .collect(Collectors.toList());
     }
 
     public List<Watch> getFilteredWatchesByPrice(BigDecimal price, List<Watch> watches) {
         return watches.stream()
-                .filter(a -> a.getPrice().compareTo(price) <= 0)
+                .filter(watch -> watch.getPrice().compareTo(price) <= 0)
                 .collect(Collectors.toList());
     }
 
     public List<Watch> getFilteredWatchesByDate(LocalDate date, List<Watch> watches) {
         return watches.stream()
-                .filter(a -> a.getDate().compareTo(date) > 0)
+                .filter(watch -> watch.getDate().isAfter(date))
                 .collect(Collectors.toList());
     }
 
@@ -71,6 +73,7 @@ public class Model {
 
     private List<Watch> sortWatches(Comparator<Watch> comparator) {
         return watches.stream()
-                .sorted(comparator).collect(Collectors.toList());
+                .sorted(comparator)
+                .collect(Collectors.toList());
     }
 }

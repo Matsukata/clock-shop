@@ -197,6 +197,8 @@ public class Controller {
     }
 
     private BigDecimal getTotalSum(List<Watch> watches) {
-        return watches.stream().map(Watch::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return watches.stream()
+                .map(Watch::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
