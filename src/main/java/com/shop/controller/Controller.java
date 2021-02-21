@@ -138,21 +138,13 @@ public class Controller {
                     List<Watch> watchesSortedByDate = model.getSortedByDate();
                     printWatchList(watchesSortedByDate);
                     break;
-                case ("glass material"):
-                    List<Watch> watchesSortedByGlassMaterial = model.getSortedByGlassMaterial();
-                    printWatchList(watchesSortedByGlassMaterial);
-                    break;
                 case ("sex"):
-                    List<Watch> watchesSortedBySex = model.getSortedBySex();
-                    printWatchList(watchesSortedBySex);
+                    List<Watch> watchesSortedBySexAndOccasion = model.getSortedBySexAndOccasion();
+                    printWatchList(watchesSortedBySexAndOccasion);
                     break;
                 case ("origin"):
-                    List<Watch> watchesSortedByOriginCountry = model.getSortedByOriginCountry();
-                    printWatchList(watchesSortedByOriginCountry);
-                    break;
-                case ("occasion"):
-                    List<Watch> watchesSortedByOccasion = model.getSortedByOccasion();
-                    printWatchList(watchesSortedByOccasion);
+                    List<Watch> watchesSortedByOriginCountryAndGlassMaterial = model.getSortedByOriginCountryAndGlassMaterial();
+                    printWatchList(watchesSortedByOriginCountryAndGlassMaterial);
                     break;
                 default:
                     view.printMessage(NOTHING_WAS_FOUND);

@@ -35,10 +35,8 @@ public class Constants {
             "Please, enter \"color\" to sort collection by color\n" +
                     "Please, enter \"price\" to sort collection by price\n" +
                     "Please, enter \"date\" to sort collection by date\n" +
-                    "Please, enter \"glass material\" to sort collection by material of glass\n" +
-                    "Please, enter \"sex\" to sort collection by sex\n" +
-                    "Please, enter \"origin\" to sort collection by country of origin\n" +
-                    "Please, enter \"occasion\" to sort collection by occasion";
+                    "Please, enter \"sex\" to sort collection by sex and occasion\n" +
+                    "Please, enter \"origin\" to sort collection by country of origin and glass material";
     public static final String MENU_FOR_ADDING =
             "Please, enter the brand, model, price, country of origin," +
                     " color, occasion, material of glass, sex, date with whitespace like this\n " +

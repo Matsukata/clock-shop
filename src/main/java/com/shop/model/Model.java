@@ -1,6 +1,8 @@
 package com.shop.model;
 
 import com.shop.model.comparator.Comparators;
+import com.shop.model.comparator.WatchByOriginCountryAndGlassMaterialComparator;
+import com.shop.model.comparator.WatchBySexAndOccasionComparator;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -50,25 +52,16 @@ public class Model {
     public List<Watch> getSortedByDate() {
         return sortWatches(Comparators.BY_DATE_COMPARATOR);
     }
-
-    public List<Watch> getSortedByGlassMaterial() {
-        return sortWatches(Comparators.BY_GLASS_MATERIAL_COMPARATOR);
-    }
-
-    public List<Watch> getSortedByOccasion() {
-        return sortWatches(Comparators.BY_OCCASION_COMPARATOR);
-    }
-
-    public List<Watch> getSortedByOriginCountry() {
-        return sortWatches(Comparators.BY_ORIGIN_COUNTRY_COMPARATOR);
-    }
-
     public List<Watch> getSortedByPrice() {
         return sortWatches(Comparators.BY_PRICE_COMPARATOR);
     }
 
-    public List<Watch> getSortedBySex() {
-        return sortWatches(Comparators.BY_SEX_COMPARATOR);
+    public List<Watch> getSortedByOriginCountryAndGlassMaterial() {
+        return sortWatches(new WatchByOriginCountryAndGlassMaterialComparator());
+    }
+
+    public List<Watch> getSortedBySexAndOccasion() {
+        return sortWatches(new WatchBySexAndOccasionComparator());
     }
 
     private List<Watch> sortWatches(Comparator<Watch> comparator) {

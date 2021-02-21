@@ -101,7 +101,16 @@ public class Watch {
 
     @Override
     public String toString() {
-        return "Watch by " + this.getBrand() + " model: " + this.getModelName() + " for " + this.getSex() + " is produced in " + this.getOriginCountry()
-                + ". Its color is " + this.getColor() + ". The price is " + this.getPrice() + ".";
+        return "Watch{" +
+                "brand=" + brand +
+                ", modelName='" + modelName + '\'' +
+                ", price=" + price +
+                ", originCountry=" + originCountry +
+                ", color=" + color +
+                ", occasion=" + occasion +
+                ", glassMaterial=" + glassMaterial +
+                ", sex=" + sex +
+                ", date=" + date +
+                '}';
     }
 }
