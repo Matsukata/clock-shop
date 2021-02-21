@@ -5,11 +5,11 @@ import com.shop.model.Watch;
 import java.util.Comparator;
 
 public class Comparators {
-    public static final Comparator<Watch> byColorComparator = new WatchByColorComparator();
-    public static final Comparator<Watch> byDateComparator = new WatchByDateComparator();
-    public static final Comparator<Watch> byGlassMaterialComparator = new WatchByGlassMaterialComparator();
-    public static final Comparator<Watch> byOccasionComparator = new WatchByOccasionComparator();
-    public static final Comparator<Watch> byOriginCountryComparator = new WatchByOriginCountryComparator();
-    public static final Comparator<Watch> byPriceComparator = new WatchByPriceComparator();
-    public static final Comparator<Watch> bySexComparator = new WatchBySexComparator();
+    public static final Comparator<Watch> byColorComparator = Comparator.comparing(Watch::getColor);
+    public static final Comparator<Watch> byDateComparator = Comparator.comparing(Watch::getDate);
+    public static final Comparator<Watch> byGlassMaterialComparator = Comparator.comparing(Watch::getGlassMaterial);
+    public static final Comparator<Watch> byOccasionComparator = Comparator.comparing(Watch::getOccasion);
+    public static final Comparator<Watch> byOriginCountryComparator = Comparator.comparing(Watch::getOriginCountry);
+    public static final Comparator<Watch> byPriceComparator = Comparator.comparing(Watch::getPrice);
+    public static final Comparator<Watch> bySexComparator = Comparator.comparing(Watch::getSex);
 }
